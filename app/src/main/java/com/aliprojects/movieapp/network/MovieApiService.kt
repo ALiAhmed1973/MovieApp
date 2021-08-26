@@ -21,7 +21,7 @@ private val retrofit= Retrofit.Builder()
 interface Service
 {
     @GET("discover/movie")
-    fun getDiscoverMovie(@Query("api_key") apiKey:String=BuildConfig.API_KEY):List<NetworkMovie>
+    suspend fun getDiscoverMovie(@Query("api_key") apiKey:String=BuildConfig.API_KEY):NetworkMovieContainer
 }
 
 object MovieApi
