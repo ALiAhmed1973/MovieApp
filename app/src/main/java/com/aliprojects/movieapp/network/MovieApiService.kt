@@ -9,24 +9,22 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val BASE_URL ="https://api.themoviedb.org/3/"
+private const val BASE_URL = "https://api.themoviedb.org/3/"
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
-private val retrofit= Retrofit.Builder()
+private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .baseUrl(BASE_URL)
     .build()
 
-interface Service
-{
+interface Service {
     @GET("discover/movie")
-    suspend fun getDiscoverMovie(@Query("api_key") apiKey:String=BuildConfig.API_KEY):NetworkMovieContainer
+    suspend fun getDiscoverMovie(@Query("api_key") apiKey: String = BuildConfig.API_KEY): NetworkMovieContainer
 }
 
-object MovieApi
-{
-    val service:Service by lazy{
+object MovieApi {
+    val service: Service by lazy {
         retrofit.create(Service::class.java)
     }
 }
