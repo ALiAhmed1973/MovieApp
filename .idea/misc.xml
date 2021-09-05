@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/custom_card_shape.xml" value="0.18703703703703703" />
         <entry key="app/src/main/res/drawable/ic_favorite_border_24.xml" value="0.20277777777777778" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.14361702127659576" />
-        <entry key="app/src/main/res/layout/movie_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/movie_details_fragment.xml" value="0.21014492753623187" />
+        <entry key="app/src/main/res/layout/movie_item.xml" value="0.25" />
       </map>
     </option>
   </component>

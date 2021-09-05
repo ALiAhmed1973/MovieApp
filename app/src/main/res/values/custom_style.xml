@@ -2,12 +2,12 @@
 <resources>
     <style name="ShapeAppearanceOverlay.aliProjects.MaterialCardView.round" parent="">
         <item name="cornerFamilyBottomRight">rounded</item>
-        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerSizeBottomRight">@dimen/small_corner_radius</item>
         <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopLeft">@dimen/small_corner_radius</item>
         <item name="cornerFamilyBottomLeft">rounded</item>
-        <item name="cornerSizeBottomLeft">32dp</item>
+        <item name="cornerSizeBottomLeft">@dimen/large_corner_radius</item>
         <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerSizeTopRight">32dp</item>
+        <item name="cornerSizeTopRight">@dimen/large_corner_radius</item>
     </style>
 </resources>

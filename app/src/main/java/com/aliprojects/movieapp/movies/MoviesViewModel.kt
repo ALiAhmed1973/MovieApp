@@ -16,7 +16,12 @@ class MoviesViewModel: ViewModel() {
         private const val TAG = "MoviesViewModel"
     }
     private val _movies = MutableLiveData<List<Movie>>()
-    val movies:LiveData<List<Movie>> = _movies
+    val movies:LiveData<List<Movie>>
+        get() =_movies
+
+    private val _navigateToMovieScreen = MutableLiveData<Movie>()
+    val navigateToMovieScreen:LiveData<Movie>
+        get() =_navigateToMovieScreen
 
     init {
         getMovies()
@@ -34,6 +39,10 @@ class MoviesViewModel: ViewModel() {
             }
 
         }
+    }
+
+    fun navigateToMovieDetails(movie: Movie) {
+        _navigateToMovieScreen.value=movie
     }
 
 
