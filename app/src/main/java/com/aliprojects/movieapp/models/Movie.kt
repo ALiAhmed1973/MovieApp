@@ -8,6 +8,8 @@ data class Movie(
 
     val posterPath: String?,
 
+    val backdropPath:String?,
+
     val overView: String,
 
     val releaseDate: String,

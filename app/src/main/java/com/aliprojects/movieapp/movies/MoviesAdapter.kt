@@ -1,5 +1,6 @@
 package com.aliprojects.movieapp.movies
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aliprojects.movieapp.databinding.MovieItemBinding
 import com.aliprojects.movieapp.models.Movie
 
+private const val TAG = "MoviesAdapter"
 class MoviesAdapter: ListAdapter<Movie,MoviesAdapter.MovieViewHolder>(DiffCallback) {
+
     object DiffCallback: DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.id == newItem.id
@@ -20,10 +23,11 @@ class MoviesAdapter: ListAdapter<Movie,MoviesAdapter.MovieViewHolder>(DiffCallba
 
     }
 
-    class MovieViewHolder(private var binding: MovieItemBinding):RecyclerView.ViewHolder(binding.root) {
+    inner class MovieViewHolder(private var binding: MovieItemBinding):RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie)
         {
-            binding.textMovieTitle.text= movie.title
+            binding.movie=movie
+            binding.executePendingBindings()
         }
     }
 
@@ -35,7 +39,7 @@ class MoviesAdapter: ListAdapter<Movie,MoviesAdapter.MovieViewHolder>(DiffCallba
     }
 
     override fun onBindViewHolder(holder: MoviesAdapter.MovieViewHolder, position: Int) {
-        var movie = getItem(position)
+        val movie = getItem(position)
         holder.bind(movie)
     }
 }

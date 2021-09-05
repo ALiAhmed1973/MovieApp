@@ -1,5 +1,6 @@
 package com.aliprojects.movieapp.network
 
+import com.aliprojects.movieapp.models.Movie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -16,6 +17,8 @@ data class NetworkMovie(
     val title: String,
     @Json(name = "poster_path")
     val posterPath: String?,
+    @Json(name="backdrop_path")
+    val backdropPath:String?,
     @Json(name = "overview")
     val overView: String,
     @Json(name = "release_date")
@@ -25,3 +28,19 @@ data class NetworkMovie(
     @Json(name = "vote_average")
     val voteAverage: Double
 )
+
+fun NetworkMovieContainer.asMovieModel():List<Movie>
+{
+    return moviesList.map{
+        Movie(
+            id=it.id,
+            title = it.title,
+            posterPath = it.posterPath,
+            backdropPath= it.backdropPath,
+            overView = it.overView,
+            releaseDate = it.releaseDate,
+            voteCount = it.voteCount,
+            voteAverage = it.voteAverage
+        )
+    }
+}
