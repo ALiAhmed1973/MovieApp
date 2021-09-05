@@ -19,8 +19,8 @@ class MoviesViewModel: ViewModel() {
     val movies:LiveData<List<Movie>>
         get() =_movies
 
-    private val _navigateToMovieScreen = MutableLiveData<Movie>()
-    val navigateToMovieScreen:LiveData<Movie>
+    private val _navigateToMovieScreen = MutableLiveData<Movie?>()
+    val navigateToMovieScreen:LiveData<Movie?>
         get() =_navigateToMovieScreen
 
     init {
@@ -35,7 +35,7 @@ class MoviesViewModel: ViewModel() {
                 _movies.value =MovieApi.service.getDiscoverMovie().asMovieModel()
             }catch (e:Exception)
             {
-                Log.e(Companion.TAG, "getMovies: ${e.message}")
+                Log.e(TAG, "getMovies: ${e.message}")
             }
 
         }
@@ -45,5 +45,8 @@ class MoviesViewModel: ViewModel() {
         _navigateToMovieScreen.value=movie
     }
 
-
+    fun navigationCompleted()
+    {
+        _navigateToMovieScreen.value = null
+    }
 }
