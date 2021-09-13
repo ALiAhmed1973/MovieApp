@@ -7,13 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.aliprojects.movieapp.database.MoviesDatabase
+import com.aliprojects.movieapp.database.getDatabase
 import com.aliprojects.movieapp.databinding.FragmentMoviesBinding
+import com.aliprojects.movieapp.repository.MoviesRepository
 
 private const val TAG = "MoviesFragment"
 
 class MoviesFragment : Fragment() {
     private lateinit var binding: FragmentMoviesBinding
-    private val viewModel: MoviesViewModel by viewModels()
+    private val database by lazy{ getDatabase(this.requireContext())}
+    private val repository by lazy{MoviesRepository(database)}
+    private val viewModel: MoviesViewModel by viewModels{
+        MoviesViewModel.Factory(repository)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

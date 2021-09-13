@@ -1,17 +1,15 @@
 package com.aliprojects.movieapp.movies
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.aliprojects.movieapp.models.Movie
 import com.aliprojects.movieapp.network.MovieApi
 import com.aliprojects.movieapp.network.asMovieModel
+import com.aliprojects.movieapp.repository.MoviesRepository
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MoviesViewModel: ViewModel() {
+class MoviesViewModel(repository: MoviesRepository): ViewModel() {
     companion object {
         private const val TAG = "MoviesViewModel"
     }
@@ -24,22 +22,24 @@ class MoviesViewModel: ViewModel() {
         get() =_navigateToMovieScreen
 
     init {
-        getMovies()
-        Log.d(TAG, "Movies: ${_movies.value}")
-    }
-
-    private fun getMovies()
-    {
         viewModelScope.launch {
-            try {
-                _movies.value =MovieApi.service.getDiscoverMovie().asMovieModel()
-            }catch (e:Exception)
-            {
-                Log.e(TAG, "getMovies: ${e.message}")
-            }
-
+           _movies.value= repository.getMoviesFromServer()
         }
+
     }
+
+//    private fun getMovies()
+//    {
+//        viewModelScope.launch {
+//            try {
+//                _movies.value =MovieApi.service.getDiscoverMovie().asMovieModel()
+//            }catch (e:Exception)
+//            {
+//                Log.e(TAG, "getMovies: ${e.message}")
+//            }
+//
+//        }
+//    }
 
     fun navigateToMovieDetails(movie: Movie) {
         _navigateToMovieScreen.value=movie
@@ -48,5 +48,12 @@ class MoviesViewModel: ViewModel() {
     fun navigationCompleted()
     {
         _navigateToMovieScreen.value = null
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    class Factory(private val repository: MoviesRepository) : ViewModelProvider.NewInstanceFactory(){
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return (MoviesViewModel(repository) as T)
+        }
     }
 }

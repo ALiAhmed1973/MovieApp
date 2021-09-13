@@ -29,8 +29,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic">
-            </ImageView>
+                tools:srcCompat="@tools:sample/backgrounds/scenic"></ImageView>
+
             <ImageView
                 android:id="@+id/image_shadow"
                 android:layout_width="match_parent"
@@ -39,8 +39,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            </ImageView>
+                app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_movie_name"
@@ -49,12 +48,28 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="250dp" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_fav_icon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                app:layout_constraintGuide_end="80dp" />
+            <ImageView
+                android:id="@+id/icon_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_movie_name"
+                app:layout_constraintBottom_toBottomOf="@id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline_fav_icon"
+                app:srcCompat="@drawable/ic_favorite_border_24">
+            </ImageView>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_fav_icon"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guideline_movie_name">
 
@@ -95,6 +110,8 @@
                     android:layout_height="wrap_content"
                     android:text="@{viewModel.movie.overView}"></TextView>
             </androidx.core.widget.NestedScrollView>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>

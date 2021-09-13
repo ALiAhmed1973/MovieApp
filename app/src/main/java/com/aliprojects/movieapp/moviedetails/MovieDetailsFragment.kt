@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.aliprojects.movieapp.R
+import com.aliprojects.movieapp.database.MoviesDatabase
+import com.aliprojects.movieapp.database.getDatabase
 import com.aliprojects.movieapp.databinding.MovieDetailsFragmentBinding
 
 class MovieDetailsFragment : Fragment()
