@@ -22,4 +22,8 @@
             android:name="movieDetails"
             app:argType="com.aliprojects.movieapp.models.Movie" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteMoviesFragment"
+        android:name="com.aliprojects.movieapp.moviefavorites.FavoriteMoviesFragment"
+        android:label="FavoriteMoviesFragment" />
 </navigation>
