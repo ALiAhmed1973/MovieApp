@@ -1,6 +1,8 @@
 package com.aliprojects.movieapp.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.aliprojects.movieapp.database.MoviesDatabase
 import com.aliprojects.movieapp.database.asDatabaseMovie
 import com.aliprojects.movieapp.database.asMovieModel
@@ -14,7 +16,7 @@ import kotlin.Exception
 private const val TAG = "MoviesRepository"
 
 class MoviesRepository(private val database: MoviesDatabase) {
-
+    val favMovies:LiveData<List<Movie>> by lazy{ getFavoriteMovies()}
     suspend fun getMoviesFromServer(): List<Movie> {
         return try {
             MovieApi.service.getDiscoverMovie().asMovieModel()
@@ -24,13 +26,10 @@ class MoviesRepository(private val database: MoviesDatabase) {
         }
     }
 
-    fun getFavoriteMovies(): List<Movie> {
-        return try {
-            database.movieDao.getMovies().value?.asMovieModel() ?: emptyList()
-        } catch (e: Exception) {
-            Log.e(TAG, "getFavoriteMovies: ${e.message}")
-            emptyList()
-        }
+     fun getFavoriteMovies():LiveData<List<Movie>>{
+         return Transformations.map(database.movieDao.getMovies()){
+             it.asMovieModel()
+         }
     }
 
     suspend fun insertMovieToFavorite(movie: Movie) {
@@ -44,5 +43,19 @@ class MoviesRepository(private val database: MoviesDatabase) {
 
         }
 
+    }
+
+    suspend fun deleteMovieFromFavorites(movie:Movie)
+    {
+        withContext(Dispatchers.IO)
+        {
+            try {
+                database.movieDao.deleteMovie(movie.asDatabaseMovie())
+            }catch (e:Exception)
+            {
+                Log.e(TAG, "deleteMovieFromFavorites: ${e.message}")
+            }
+
+        }
     }
 }
