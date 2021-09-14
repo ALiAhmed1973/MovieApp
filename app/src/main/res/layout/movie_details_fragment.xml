@@ -62,6 +62,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline_fav_icon"
+                isFavorite="@{viewModel.movie.favorite}"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_favorite_border_24">
             </ImageView>
             <LinearLayout

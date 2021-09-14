@@ -25,5 +25,9 @@
     <fragment
         android:id="@+id/favoriteMoviesFragment"
         android:name="com.aliprojects.movieapp.moviefavorites.FavoriteMoviesFragment"
-        android:label="FavoriteMoviesFragment" />
+        android:label="FavoriteMoviesFragment" >
+        <action
+            android:id="@+id/action_favoriteMoviesFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
 </navigation>
