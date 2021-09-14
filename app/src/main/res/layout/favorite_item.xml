@@ -8,6 +8,9 @@
             name="movie"
             type="com.aliprojects.movieapp.models.Movie" />
     </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_movie"
         android:layout_width="300dp"
@@ -23,7 +26,7 @@
 
             <ImageView
                 android:id="@+id/image_movie"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -32,6 +35,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:imgUrl="@{movie.posterPath}"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            <ImageView
+                android:id="@+id/image_shadow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_card_shape"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </ImageView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -62,16 +75,19 @@
 
             <ImageView
                 android:id="@+id/icon_fav"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/guideline2"
+                isFavorite="@{movie.favorite}"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/ic_favorite_border_24">
             </ImageView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 </layout>

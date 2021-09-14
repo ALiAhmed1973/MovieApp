@@ -9,22 +9,24 @@
     type="com.aliprojects.movieapp.moviefavorites.FavoriteMoviesViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".moviefavorites.FavoriteMoviesFragment">
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/rv_favorite_movies"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:padding="8dp"
-            tools:listitem="@layout/favorite_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/favorite_item">
         </androidx.recyclerview.widget.RecyclerView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="FavoriteMovies"
-           >
-        </TextView>
-    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
