@@ -1,29 +1,26 @@
 package com.aliprojects.movieapp.movies
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.aliprojects.movieapp.models.Movie
-import com.aliprojects.movieapp.network.MovieApi
-import com.aliprojects.movieapp.network.asMovieModel
 import com.aliprojects.movieapp.repository.MoviesRepository
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
-class MoviesViewModel(repository: MoviesRepository): ViewModel() {
+class MoviesViewModel(private val repository: MoviesRepository) : ViewModel() {
     companion object {
         private const val TAG = "MoviesViewModel"
     }
+
     private val _movies = MutableLiveData<List<Movie>>()
-    val movies:LiveData<List<Movie>>
-        get() =_movies
+    val movies: LiveData<List<Movie>>
+        get() = _movies
 
     private val _navigateToMovieScreen = MutableLiveData<Movie?>()
-    val navigateToMovieScreen:LiveData<Movie?>
-        get() =_navigateToMovieScreen
+    val navigateToMovieScreen: LiveData<Movie?>
+        get() = _navigateToMovieScreen
 
     init {
         viewModelScope.launch {
-           _movies.value= repository.getMoviesFromServer()
+            _movies.value = repository.getMoviesFromServer()
         }
 
     }
@@ -42,16 +39,16 @@ class MoviesViewModel(repository: MoviesRepository): ViewModel() {
 //    }
 
     fun navigateToMovieDetails(movie: Movie) {
-        _navigateToMovieScreen.value=movie
+        _navigateToMovieScreen.value = movie
     }
 
-    fun navigationCompleted()
-    {
+    fun navigationCompleted() {
         _navigateToMovieScreen.value = null
     }
 
     @Suppress("UNCHECKED_CAST")
-    class Factory(private val repository: MoviesRepository) : ViewModelProvider.NewInstanceFactory(){
+    class Factory(private val repository: MoviesRepository) :
+        ViewModelProvider.NewInstanceFactory() {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return (MoviesViewModel(repository) as T)
         }
