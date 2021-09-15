@@ -16,7 +16,7 @@ import kotlin.Exception
 private const val TAG = "MoviesRepository"
 
 class MoviesRepository(private val database: MoviesDatabase) {
-    val favMovies:LiveData<List<Movie>> by lazy{ getFavoriteMovies()}
+    val favMovies: LiveData<List<Movie>> by lazy { getFavoriteMovies() }
     suspend fun getMoviesFromServer(): List<Movie> {
         return try {
             MovieApi.service.getDiscoverMovie().asMovieModel()
@@ -26,10 +26,16 @@ class MoviesRepository(private val database: MoviesDatabase) {
         }
     }
 
-     fun getFavoriteMovies():LiveData<List<Movie>>{
-         return Transformations.map(database.movieDao.getMovies()){
-             it.asMovieModel()
-         }
+    private fun getFavoriteMovies(): LiveData<List<Movie>> {
+        return Transformations.map(database.movieDao.getMovies()) {
+            it.asMovieModel()
+        }
+    }
+
+    fun getFavoriteMovieByID(id: Int): LiveData<Movie?> {
+        return Transformations.map(database.movieDao.getMovieByID(id)) {
+            it?.asMovieModel()
+        }
     }
 
     suspend fun insertMovieToFavorite(movie: Movie) {
@@ -45,14 +51,12 @@ class MoviesRepository(private val database: MoviesDatabase) {
 
     }
 
-    suspend fun deleteMovieFromFavorites(movie:Movie)
-    {
+    suspend fun deleteMovieFromFavorites(movie: Movie) {
         withContext(Dispatchers.IO)
         {
             try {
                 database.movieDao.deleteMovie(movie.asDatabaseMovie())
-            }catch (e:Exception)
-            {
+            } catch (e: Exception) {
                 Log.e(TAG, "deleteMovieFromFavorites: ${e.message}")
             }
 

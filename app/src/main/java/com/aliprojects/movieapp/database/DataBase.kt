@@ -10,6 +10,9 @@ interface MovieDao {
     @Query("SELECT * FROM favorites")
     fun getMovies(): LiveData<List<DatabaseMovie>>
 
+    @Query("SELECT * FROM favorites WHERE id = :id")
+    fun getMovieByID(id:Int):LiveData<DatabaseMovie?>
+
     @Insert
     fun insertMovie(movie: DatabaseMovie)
 

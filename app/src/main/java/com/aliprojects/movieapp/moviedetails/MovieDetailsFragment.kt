@@ -1,6 +1,7 @@
 package com.aliprojects.movieapp.moviedetails
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,16 +31,14 @@ class MovieDetailsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val movieDetails =
-            com.aliprojects.movieapp.moviedetails.MovieDetailsFragmentArgs.fromBundle(
-                requireArguments()
-            ).movieDetails
-
+        val movieDetails = MovieDetailsFragmentArgs.fromBundle(requireArguments()).movieDetails
+        viewModel.getFavMovie(movieDetails)
+        Log.d(TAG, "onViewCreated: $movieDetails")
         binding.iconFav.setOnClickListener {
             viewModel.addOrRemoveMovieFromFavorite()
         }
-       viewModel.favMovies.observe(viewLifecycleOwner){
-           viewModel.setMovieDetails(movieDetails,it)
+       viewModel.favMovie.observe(viewLifecycleOwner){
+           viewModel.setMovieDetails(it)
         }
 
     }

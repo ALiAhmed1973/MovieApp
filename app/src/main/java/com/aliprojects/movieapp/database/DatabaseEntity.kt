@@ -56,3 +56,17 @@ fun Movie.asDatabaseMovie(): DatabaseMovie {
         isFavorite = isFavorite
     )
 }
+
+fun DatabaseMovie.asMovieModel(): Movie {
+    return Movie(
+        id = id,
+        title =title,
+        posterPath = posterPath,
+        backdropPath = backdropPath,
+        overView = overView,
+        releaseDate = releaseDate,
+        voteCount = voteCount,
+        voteAverage = voteAverage,
+        isFavorite = isFavorite
+    )
+}
