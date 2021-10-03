@@ -20,7 +20,6 @@ class MovieDetailsViewModel(private val repository: MoviesRepository) : ViewMode
 
     fun getFavMovie(movie: Movie) {
         _movie.value = movie
-
         favMovie = repository.getFavoriteMovieByID(movie.id)
 
     }
@@ -31,8 +30,6 @@ class MovieDetailsViewModel(private val repository: MoviesRepository) : ViewMode
 
     fun addOrRemoveMovieFromFavorite() {
         viewModelScope.launch {
-            withContext(Dispatchers.IO)
-            {
                 Log.d(TAG, "addOrRemoveMovieFromFavorite: ${_movie.value}")
                 _movie.value?.let {
                     if (it.isFavorite) {
@@ -41,9 +38,7 @@ class MovieDetailsViewModel(private val repository: MoviesRepository) : ViewMode
                         it.isFavorite = true
                         repository.insertMovieToFavorite(it)
                     }
-
                 }
-            }
         }
     }
 

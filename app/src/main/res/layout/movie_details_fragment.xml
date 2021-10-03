@@ -59,43 +59,61 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/guideline_movie_name"
-                app:layout_constraintBottom_toBottomOf="@id/linearLayout"
+                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline_fav_icon"
                 isFavorite="@{viewModel.movie.favorite}"
                 app:tint="@color/white"
                 app:srcCompat="@drawable/ic_favorite_border_24">
             </ImageView>
-            <LinearLayout
-                android:id="@+id/linearLayout"
+
+
+            <TextView
+                android:id="@+id/text_movie_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:text="@{viewModel.movie.title}"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_fav_icon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_movie_name">
+                app:layout_constraintTop_toTopOf="@+id/guideline_movie_name"
+                tools:text="Movie Name"></TextView>
 
-                <TextView
-                    android:id="@+id/text_movie_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.movie.title}"
-                    tools:text="Movie Name"></TextView>
+            <TextView
+                android:id="@+id/text_release_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.movie.releaseDate}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_fav_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_movie_title"
+                tools:text="2013-08-30"></TextView>
 
-                <TextView
-                    android:id="@+id/text_release_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.movie.releaseDate}"
-                    tools:text="2013-08-30"></TextView>
+            <TextView
+                android:id="@+id/text_movie_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Float.toString(viewModel.movie.voteAverage)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_release_date"
+                tools:text="8/2"></TextView>
 
-                <TextView
-                    android:id="@+id/text_movie_rating"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@{Double.toString(viewModel.movie.voteAverage)}"
-                    tools:text="8/2"></TextView>
-            </LinearLayout>
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:clickable="false"
+                android:numStars="5"
+                android:progressBackgroundTint="@color/black"
+                android:progressTint="@color/white"
+                android:rating="@{viewModel.movie.voteAverage}"
+                android:stepSize="0.5"
+                app:layout_constraintBottom_toBottomOf="@+id/text_movie_rating"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_fav_icon"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/text_movie_rating"
+                app:layout_constraintTop_toTopOf="@+id/text_movie_rating"></RatingBar>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -103,7 +121,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar"
                 app:layout_constraintVertical_bias="0.1">
 
                 <TextView

@@ -40,7 +40,7 @@ fun NetworkMovieContainer.asMovieModel():List<Movie>
             overView = it.overView,
             releaseDate = it.releaseDate,
             voteCount = it.voteCount,
-            voteAverage = it.voteAverage
+            voteAverage = (it.voteAverage/2).toFloat()
         )
     }
 }

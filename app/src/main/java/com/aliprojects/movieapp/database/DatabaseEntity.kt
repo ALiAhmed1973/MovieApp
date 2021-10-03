@@ -21,7 +21,7 @@ data class DatabaseMovie(
 
     @ColumnInfo(name = "vote_count") val voteCount: Int,
 
-    @ColumnInfo(name = "vote_average") val voteAverage: Double,
+    @ColumnInfo(name = "vote_average") val voteAverage: Float,
 
     @ColumnInfo(name = "is_favorite") var isFavorite: Boolean = false
 )
