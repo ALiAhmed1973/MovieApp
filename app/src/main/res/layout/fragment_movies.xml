@@ -11,22 +11,38 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".movies.MoviesFragment">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_recent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/recent_movies_text"
+            android:textAppearance="?attr/textAppearanceOverline"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </com.google.android.material.textview.MaterialTextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movies_list"
+            listData="@{viewModel.movies}"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="8dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
+            android:orientation="vertical"
+            android:layout_marginTop="24dp"
+            android:padding="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/movie_item"
-            listData="@{viewModel.movies}" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_recent"
+            tools:listitem="@layout/movie_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

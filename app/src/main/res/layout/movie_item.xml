@@ -13,28 +13,36 @@
     android:layout_height="wrap_content">
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_movie"
-        android:layout_width="400dp"
+        android:layout_width="370dp"
         android:layout_height="200dp"
         android:layout_marginBottom="30dp"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.aliProjects.MaterialCardView.round"
-        app:cardElevation="5dp">
+        style="@style/Widget.aliProjects.MaterialCardView.CardView"
+        app:shapeAppearance="@style/ShapeAppearance.aliProjects.MaterialCardView.round">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_movie"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:imgUrl="@{movie.backdropPath}"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+                tools:srcCompat="@tools:sample/backgrounds/scenic"
+                style="@style/Widget.aliProjects.ShapeableImageView" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_shadow"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/custom_card_shape"
+                app:shapeAppearance="@style/ShapeAppearance.aliProjects.MaterialCardView.round"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+            </com.google.android.material.imageview.ShapeableImageView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -50,19 +58,22 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="50dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_movie_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
                 android:text="@{movie.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guideline3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline2"
+                app:layout_constraintVertical_bias="0.8"
                 tools:text="Hello It's me ,Hello from the other side">
-            </TextView>
+            </com.google.android.material.textview.MaterialTextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -13,38 +13,37 @@
         android:layout_height="wrap_content">
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_movie"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_margin="8dp"
-        app:cardCornerRadius="@dimen/large_corner_radius"
-        app:cardElevation="5dp">
+        app:shapeAppearance="@style/ShapeAppearance.aliProjects.MaterialCardView.round"
+        style="@style/Widget.aliProjects.MaterialCardView.CardView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_movie"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:imgUrl="@{movie.posterPath}"
-                tools:srcCompat="@tools:sample/backgrounds/scenic" />
-            <ImageView
+                tools:srcCompat="@tools:sample/backgrounds/scenic"
+                style="@style/Widget.aliProjects.ShapeableImageView"/>
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/image_shadow"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:background="@drawable/custom_card_shape"
+                app:shapeAppearance="@style/ShapeAppearance.aliProjects.MaterialCardView.round"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-            </ImageView>
+            </com.google.android.material.imageview.ShapeableImageView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -60,30 +59,29 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="80dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_movie_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
+                android:textAppearance="?attr/textAppearanceListItemSecondary"
                 android:text="@{movie.title}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/guideline3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline2"
-                tools:text="Hello It's me ,Hello from the other side"></TextView>
+                tools:text="Hello It's me ,Hello from the other side">
+            </com.google.android.material.textview.MaterialTextView>
 
             <ImageView
                 android:id="@+id/icon_fav"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/guideline2"
                 isFavorite="@{movie.favorite}"
-                app:tint="@color/white"
-                app:srcCompat="@drawable/ic_favorite_border_24">
+                style="@style/FavoriteIcon">
             </ImageView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
